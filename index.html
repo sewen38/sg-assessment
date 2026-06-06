@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>新加坡移民项目资格评估</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif;background:#f5f6f8;color:#1a1a1a;line-height:1.6;-webkit-text-size-adjust:100%}
+.container{max-width:720px;margin:0 auto;padding:0 0 40px}
+.header{background:linear-gradient(135deg,#b71c1c,#e53935);color:#fff;padding:32px 20px 28px;text-align:center;position:sticky;top:0;z-index:10}
+.header h1{font-size:22px;margin-bottom:4px}
+.header p{opacity:.85;font-size:13px}
+.card{background:#fff;border-radius:14px;padding:24px 18px;margin:16px 12px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card h2{font-size:17px;color:#b71c1c;margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid #fce4e4;display:flex;align-items:center;gap:8px}
+.card h2 .num{background:#b71c1c;color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.fg{margin-bottom:16px}
+.fg label.q{display:block;font-weight:600;font-size:14px;margin-bottom:5px;color:#333}
+.fg .hint{font-size:12px;color:#999;margin-bottom:4px;font-weight:400}
+.fg select,.fg input[type=text]{width:100%;padding:11px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:15px;transition:border .2s;background:#fafafa;-webkit-appearance:none}
+.fg select:focus,.fg input:focus{outline:none;border-color:#e53935;background:#fff}
+.detail-input{margin-top:8px;display:none}
+.detail-input.show{display:block}
+.detail-input input{width:100%;padding:10px 12px;border:1.5px solid #f8c8c8;border-radius:8px;font-size:14px;background:#fef0f0}
+.detail-input input::placeholder{color:#999}
+.detail-input .label-sm{font-size:12px;color:#666;margin-bottom:4px;display:block}
+.radio-row{display:flex;gap:10px;flex-wrap:wrap}
+.radio-row .ropt{flex:1;min-width:80px;padding:10px 16px;border:1.5px solid #ddd;border-radius:8px;text-align:center;cursor:pointer;font-size:14px;background:#fafafa;transition:all .15s;user-select:none}
+.radio-row .ropt:active,.radio-row .ropt.sel{border-color:#e53935;background:#fef0f0;font-weight:600;color:#b71c1c}
+.radio-row input{display:none}
+.btn{display:block;width:calc(100% - 24px);margin:20px auto;padding:14px;background:linear-gradient(135deg,#b71c1c,#e53935);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer}
+.btn:active{transform:scale(.98)}
+
+.results-wrap{display:none;margin:0 12px}
+.results-wrap.show{display:block}
+.rs-card{background:#fff;border-radius:14px;padding:20px 18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.rs-card h3{font-size:18px;margin-bottom:6px;color:#b71c1c}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;margin:3px}
+.tg{background:#dcfce7;color:#166534}
+.ty{background:#fef3c7;color:#92400e}
+.tr{background:#fee2e2;color:#991b1b}
+.prog{background:#f8fafc;border-radius:10px;padding:16px;margin-bottom:10px}
+.prog.el{border-left:4px solid #22c55e}
+.prog.mb{border-left:4px solid #f59e0b}
+.prog.no{border-left:4px solid #e0e0e0;opacity:.85}
+.prog h4{font-size:15px;margin-bottom:6px;color:#b71c1c}
+.prog .st{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;margin-bottom:6px}
+.st-q{background:#dcfce7;color:#166534}.st-m{background:#fef3c7;color:#92400e}.st-n{background:#fee2e2;color:#991b1b}
+.prog .d{font-size:13px;color:#555;line-height:1.7}
+.g{color:#166534;font-weight:600}.o{color:#c2410c;font-weight:600}
+table.cm{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px}
+table.cm th,table.cm td{border:1px solid #e2e8f0;padding:7px;text-align:center}
+table.cm th{background:#f1f5f9;font-weight:600;font-size:11px}
+table.cm td:first-child{text-align:left;font-weight:500}
+.hb{background:#fef0f0;border:1px solid #f8c8c8;border-radius:8px;padding:12px;margin:10px 0;font-size:13px}
+.hb.w{background:#fff7ed;border-color:#fed7aa}
+.btn-sm{display:inline-block;padding:10px 20px;margin:4px 0;background:#fce4e4;color:#666;border:none;border-radius:8px;font-size:13px;cursor:pointer}
+.spinner{display:inline-block;width:12px;height:12px;border:2px solid #ddd;border-top-color:#e53935;border-radius:50%;animation:spin .8s linear infinite;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:400px){.radio-row .ropt{min-width:60px;padding:8px 12px;font-size:13px}.card{padding:18px 14px;margin:10px 8px}.header h1{font-size:19px}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header"><h1>🇸🇬 新加坡移民项目资格评估</h1><p>基于ICA/MOM/EDB 2025-2026政策 · 约3分钟</p></div>
+
+<form id="qform">
+
+<div class="card"><h2><span class="num">1</span> 基本信息</h2>
+<div class="fg"><label class="q">年龄</label><select id="age"><option value="">请选择</option><option value="18-30">18-30岁</option><option value="31-40">31-40岁</option><option value="41-50">41-50岁</option><option value="51+">51岁及以上</option></select></div>
+<div class="fg"><label class="q">国籍/户籍</label><select id="nationality"><option value="">请选择</option><option value="cn">中国内地居民</option><option value="cn-foreign">中国籍+已取得外国永居</option><option value="mo-tw">澳门/台湾居民</option><option value="foreign">外国国民</option></select></div>
+<div class="fg"><label class="q">有无犯罪记录</label><div class="radio-row"><label class="ropt"><input type="radio" name="nocrim" value="yes"> 有</label><label class="ropt"><input type="radio" name="nocrim" value="no"> 无</label></div></div>
+<div class="fg"><label class="q">有无健康证明</label><div class="radio-row"><label class="ropt"><input type="radio" name="health" value="yes"> 有</label><label class="ropt"><input type="radio" name="health" value="no"> 无</label></div></div>
+</div>
+
+<div class="card"><h2><span class="num">2</span> 学历背景</h2>
+<div class="fg"><label class="q">最高学历</label><select id="education"><option value="">请选择</option><option value="doctor">博士</option><option value="master">硕士</option><option value="bachelor">学士（本科）</option><option value="associate">大专/副学士</option><option value="highschool">高中及以下</option></select></div>
+<div class="fg"><label class="q">毕业院校是否属于世界顶尖大学？<span class="hint">(QS/THE/ARWU前100，或新加坡MOM认可的顶级学府——COMPASS C2可获20分)</span></label><div class="radio-row"><label class="ropt"><input type="radio" name="topuni" value="yes"> 是</label><label class="ropt"><input type="radio" name="topuni" value="no"> 否</label><label class="ropt"><input type="radio" name="topuni" value="unknown"> 不确定</label></div>
+<div id="dt-topuni" class="detail-input"><span class="label-sm">毕业院校全称：</span><input type="text" id="topuni-name" placeholder="例如：NUS / 清华大学 / MIT"></div></div>
+<div class="fg" id="fg-stem" style="display:none"><label class="q">硕/博士是否STEM学科？<span class="hint">(科学、科技、工程、数学——COMPASS技能加分有利)</span></label><div class="radio-row"><label class="ropt"><input type="radio" name="stem" value="yes"> 是</label><label class="ropt"><input type="radio" name="stem" value="no"> 否</label></div></div>
+<div class="fg"><label class="q">是否在新加坡取得全日制学历？<span class="hint">(含公立大学/理工学院)</span></label><div class="radio-row"><label class="ropt"><input type="radio" name="sgdegree" value="yes"> 是</label><label class="ropt"><input type="radio" name="sgdegree" value="no"> 否</label></div>
+<div id="dt-sgdegree" class="detail-input"><span class="label-sm">新加坡院校全称：</span><input type="text" id="sgdegree-name" placeholder="例如：NUS / NTU / SMU"></div></div>
+</div>
+
+<div class="card"><h2><span class="num">3</span> 工作与收入</h2>
+<div class="fg"><label class="q">总工作经验年限</label><select id="workyears"><option value="">请选择</option><option value="0-2">0-2年</option><option value="3-5">3-5年</option><option value="5-9">5-9年</option><option value="10+">10年及以上</option></select></div>
+<div class="fg"><label class="q">当前月薪（新元 SGD）<span class="hint">(含基本工资+固定津贴，EP申请以此为准)</span></label><select id="salary"><option value="">请选择</option><option value="below5600">低于 S$5,600</option><option value="5600-6199">S$5,600 - S$6,199</option><option value="6200-9999">S$6,200 - S$9,999</option><option value="10000-19999">S$10,000 - S$19,999</option><option value="gte20000">S$20,000 及以上</option></select></div>
+<div class="fg"><label class="q">所在行业</label><select id="industry"><option value="">请选择</option><option value="finance">金融服务（银行/保险/资管）</option><option value="tech">科技/互联网/IT</option><option value="other">其他行业（制造/贸易/医疗等）</option></select></div>
+<div class="fg"><label class="q">是否拥有≥3年管理/专业级别工作经验？</label><div class="radio-row"><label class="ropt"><input type="radio" name="exp3y" value="yes"> 是</label><label class="ropt"><input type="radio" name="exp3y" value="no"> 否</label></div>
+<div id="dt-exp3y" class="detail-input"><span class="label-sm">简述（公司/职位/年限）：</span><input type="text" id="exp3y-info" placeholder="例如：Google Engineering Manager 5年"></div></div>
+<div class="fg"><label class="q">是否有≥3年在跨国公司/知名企业的工作经验？<span class="hint">(上市公司/财富500强/福布斯2000强——COMPASS C3/C4有利)</span></label><div class="radio-row"><label class="ropt"><input type="radio" name="mnc" value="yes"> 是</label><label class="ropt"><input type="radio" name="mnc" value="no"> 否</label></div>
+<div id="dt-mnc" class="detail-input"><span class="label-sm">公司及职位：</span><input type="text" id="mnc-info" placeholder="例如：Apple 高级工程师 4年"></div></div>
+</div>
+
+<div class="card"><h2><span class="num">4</span> 企业/投资背景</h2>
+<div class="fg"><label class="q">是否拥有/经营企业？<span class="hint">(持股≥30%或为大股东)</span></label><div class="radio-row"><label class="ropt"><input type="radio" name="bizowner" value="yes"> 是</label><label class="ropt"><input type="radio" name="bizowner" value="no"> 否</label></div>
+<div id="fg-bizdetail" style="display:none">
+<div class="fg"><label class="q">公司近一年营业额（新元 SGD）</label><select id="turnover"><option value="">请选择</option><option value="below10m">低于 S$1,000万</option><option value="10m-50m">S$1,000万 - S$5,000万</option><option value="50m-200m">S$5,000万 - S$2亿</option><option value="gte200m">S$2亿 及以上（符合GIP门槛）</option></select></div>
+<div class="fg"><label class="q">创业/经商年限</label><select id="bizyrs"><option value="">请选择</option><option value="lt3">不足3年</option><option value="gte3">3年及以上（符合GIP资深企业主要求）</option></select></div>
+</div></div>
+<div class="fg"><label class="q">个人净资产（新元 SGD）</label><select id="networth"><option value="">请选择</option><option value="below1m">低于 S$100万</option><option value="1m-5m">S$100万 - S$500万</option><option value="5m-20m">S$500万 - S$2,000万</option><option value="gte20m">S$2,000万 及以上</option></select></div>
+<div class="fg"><label class="q">是否有兴趣设立家族办公室（Family Office）？</label><div class="radio-row"><label class="ropt"><input type="radio" name="fointerest" value="yes"> 是</label><label class="ropt"><input type="radio" name="fointerest" value="no"> 否</label></div>
+<div id="fg-fodetail" style="display:none">
+<div class="fg"><label class="q">可用于家族办公室的资产管理规模（AUM）<span class="hint">(新元)</span></label><select id="foaum"><option value="">请选择</option><option value="below20m">低于 S$2,000万</option><option value="20m-50m">S$2,000万 - S$5,000万（符合13O最低门槛）</option><option value="50m-200m">S$5,000万 - S$2亿（符合13U）</option><option value="gte200m">S$2亿 及以上（符合GIP-C）</option></select></div>
+</div></div>
+</div>
+
+<div class="card"><h2><span class="num">5</span> 科技背景（Tech.Pass & 科技EP评估）</h2>
+<div class="fg"><label class="q">是否在估值/市值≥5亿美元的科技企业有≥5年领导经验？<span class="hint">(Tech.Pass条件b——C-suite/VP/Director级别)</span></label><div class="radio-row"><label class="ropt"><input type="radio" name="techleader" value="yes"> 是</label><label class="ropt"><input type="radio" name="techleader" value="no"> 否</label></div>
+<div id="dt-techleader" class="detail-input"><span class="label-sm">公司及职位/年限：</span><input type="text" id="techleader-info" placeholder="例如：字节跳动 技术VP 6年"></div></div>
+<div class="fg"><label class="q">是否有≥5年领先科技产品开发经验？<span class="hint">(Tech.Pass条件c——产品月活≥10万 或 年收入≥1亿美元)</span></label><div class="radio-row"><label class="ropt"><input type="radio" name="techproduct" value="yes"> 是</label><label class="ropt"><input type="radio" name="techproduct" value="no"> 否</label></div>
+<div id="dt-techproduct" class="detail-input"><span class="label-sm">产品名称及数据（MAU/年收入）：</span><input type="text" id="techproduct-info" placeholder="例如：某SaaS产品 月活50万 年收入$5,000万"></div></div>
+<div class="fg"><label class="q">目前/最近是否在科技企业任职？<span class="hint">(COMPASS C5技能加分——如属于新加坡短缺职业清单SOL)</span></label><div class="radio-row"><label class="ropt"><input type="radio" name="techemployed" value="yes"> 是</label><label class="ropt"><input type="radio" name="techemployed" value="no"> 否</label></div></div>
+</div>
+
+<div class="card"><h2><span class="num">6</span> 新加坡联系</h2>
+<div class="fg"><label class="q">是否已获得新加坡雇主聘用/Job Offer？</label><div class="radio-row"><label class="ropt"><input type="radio" name="sgjob" value="yes"> 是，已获正式聘用</label><label class="ropt"><input type="radio" name="sgjob" value="neg"> 正在洽谈中</label><label class="ropt"><input type="radio" name="sgjob" value="no"> 否</label></div></div>
+<div class="fg"><label class="q">是否计划在新加坡创业/设立公司？</label><div class="radio-row"><label class="ropt"><input type="radio" name="sgplan" value="yes"> 是，已有具体计划</label><label class="ropt"><input type="radio" name="sgplan" value="maybe"> 有意向，暂无计划</label><label class="ropt"><input type="radio" name="sgplan" value="no"> 否</label></div></div>
+<div class="fg"><label class="q">是否有直系亲属在新加坡？<span class="hint">(配偶/父母/子女为新加坡公民或PR——PR申请加分因素)</span></label><div class="radio-row"><label class="ropt"><input type="radio" name="sgfamily" value="yes"> 是</label><label class="ropt"><input type="radio" name="sgfamily" value="no"> 否</label></div></div>
+<div class="fg"><label class="q">目前是否持有新加坡签证/准证？</label><select id="sgvisa"><option value="">请选择</option><option value="none">无</option><option value="ep">EP 就业准证</option><option value="sp">S Pass</option><option value="dp">DP 家属准证</option><option value="ltvp">LTVP 长期探访准证</option><option value="stp">学生准证</option><option value="other">其他</option></select></div>
+</div>
+
+<div class="card"><h2><span class="num">7</span> 语言能力</h2>
+<div class="fg"><label class="q">英文能力<span class="hint">(新加坡以英语为主要工作语言)</span></label><select id="english"><option value="">请选择</option><option value="native">精通（雅思≥7.0/托福≥94）</option><option value="good">良好（雅思≥6.0/托福≥80）</option><option value="basic">基础</option><option value="none">不会</option></select></div>
+<div class="fg"><label class="q">中文能力<span class="hint">(普通话)</span></label><select id="chinese"><option value="">请选择</option><option value="native">母语/精通(听说读写)</option><option value="good">良好(日常沟通+书面)</option><option value="basic">基础</option><option value="none">不会</option></select></div>
+<div class="fg"><label class="q">是否还流利掌握其他外语？</label><div class="radio-row"><label class="ropt"><input type="radio" name="otherlang" value="yes"> 是</label><label class="ropt"><input type="radio" name="otherlang" value="no"> 否</label></div>
+<div id="dt-otherlang" class="detail-input"><span class="label-sm">语种及水平：</span><input type="text" id="otherlang-info" placeholder="例如：日语N1 / 马来语"></div></div>
+</div>
+
+<div class="card"><h2><span class="num">8</span> 移民意向</h2>
+<div class="fg"><label class="q">主要移民目的<span class="hint">(可多选)</span></label><div class="radio-row"><label class="ropt"><input type="checkbox" name="purpose" value="work"> 工作发展</label><label class="ropt"><input type="checkbox" name="purpose" value="edu"> 子女教育</label><label class="ropt"><input type="checkbox" name="purpose" value="invest"> 资产配置</label><label class="ropt"><input type="checkbox" name="purpose" value="life"> 生活方式</label><label class="ropt"><input type="checkbox" name="purpose" value="passport"> 护照/永居</label></div></div>
+<div class="fg"><label class="q">愿意投入的资金预算（新元）</label><select id="budget"><option value="">请选择</option><option value="lt100k">低于 S$10万</option><option value="100k-1m">S$10万 - S$100万</option><option value="1m-10m">S$100万 - S$1,000万</option><option value="gte10m">S$1,000万 及以上</option></select></div>
+</div>
+
+<button type="button" class="btn" onclick="submitForm()">📊 提交评估</button>
+</form>
+
+<div class="results-wrap" id="results"></div>
+</div>
+
+<script>
+(function(){
+  var D=document;
+  function R(name){var e=D.querySelector('input[name="'+name+'"]:checked');return e?e.value:null;}
+  function S(id){var e=D.getElementById(id);return e?e.value:'';}
+  function I(id){var e=D.getElementById(id);return e?e.value.trim():'';}
+  function Y(v){return v==='yes'?'是':v==='no'?'否':(v||'未填');}
+  function L(id,v){var m={'age':{'18-30':'18-30岁','31-40':'31-40岁','41-50':'41-50岁','51+':'51岁及以上'},'nationality':{'cn':'中国内地居民','cn-foreign':'中国籍+已取得外国永居','mo-tw':'澳门/台湾居民','foreign':'外国国民'},'education':{'doctor':'博士','master':'硕士','bachelor':'学士(本科)','associate':'大专/副学士','highschool':'高中及以下'},'workyears':{'0-2':'0-2年','3-5':'3-5年','5-9':'5-9年','10+':'10年及以上'},'salary':{'below5600':'低于S$5,600','5600-6199':'S$5,600-S$6,199','6200-9999':'S$6,200-S$9,999','10000-19999':'S$10,000-S$19,999','gte20000':'S$20,000+'},'industry':{'finance':'金融服务','tech':'科技/互联网/IT','other':'其他行业'},'turnover':{'below10m':'低于S$1,000万','10m-50m':'S$1,000万-S$5,000万','50m-200m':'S$5,000万-S$2亿','gte200m':'S$2亿+'},'bizyrs':{'lt3':'不足3年','gte3':'3年及以上'},'networth':{'below1m':'低于S$100万','1m-5m':'S$100万-S$500万','5m-20m':'S$500万-S$2,000万','gte20m':'S$2,000万+'},'foaum':{'below20m':'低于S$2,000万','20m-50m':'S$2,000万-S$5,000万','50m-200m':'S$5,000万-S$2亿','gte200m':'S$2亿+'},'english':{'native':'精通(雅思≥7.0)','good':'良好(雅思≥6.0)','basic':'基础','none':'不会'},'chinese':{'native':'母语/精通','good':'良好','basic':'基础','none':'不会'},'sgvisa':{'none':'无','ep':'EP就业准证','sp':'S Pass','dp':'DP家属准证','ltvp':'LTVP长期探访准证','stp':'学生证','other':'其他'},'budget':{'lt100k':'低于S$10万','100k-1m':'S$10万-S$100万','1m-10m':'S$100万-S$1,000万','gte10m':'S$1,000万+'}};return (m[id]||{})[v]||v;}
+
+  // Radio selection
+  D.querySelectorAll('input[type="radio"]').forEach(function(r){r.addEventListener('change',function(){var row=this.closest('.radio-row');row.querySelectorAll('.ropt').forEach(function(l){l.classList.remove('sel');});this.parentElement.classList.add('sel');onChange(this.name,this.value);});});
+  D.querySelectorAll('input[type="checkbox"]').forEach(function(cb){cb.addEventListener('change',function(){this.parentElement.classList.toggle('sel',this.checked);});});
+  D.getElementById('education').addEventListener('change',function(){D.getElementById('fg-stem').style.display=(this.value==='master'||this.value==='doctor')?'block':'none';});
+
+  function onChange(n,v){
+    if(n==='topuni')D.getElementById('dt-topuni').classList.toggle('show',v==='yes'||v==='unknown');
+    if(n==='sgdegree')D.getElementById('dt-sgdegree').classList.toggle('show',v==='yes');
+    if(n==='exp3y')D.getElementById('dt-exp3y').classList.toggle('show',v==='yes');
+    if(n==='mnc')D.getElementById('dt-mnc').classList.toggle('show',v==='yes');
+    if(n==='techleader')D.getElementById('dt-techleader').classList.toggle('show',v==='yes');
+    if(n==='techproduct')D.getElementById('dt-techproduct').classList.toggle('show',v==='yes');
+    if(n==='otherlang')D.getElementById('dt-otherlang').classList.toggle('show',v==='yes');
+    if(n==='bizowner')D.getElementById('fg-bizdetail').style.display=v==='yes'?'block':'none';
+    if(n==='fointerest')D.getElementById('fg-fodetail').style.display=v==='yes'?'block':'none';
+  }
+
+  window.submitForm=function(){
+    var age=S('age'),nat=S('nationality'),nocrim=R('nocrim'),health=R('health'),edu=S('education'),topuni=R('topuni'),stem=R('stem'),sgdegree=R('sgdegree'),worky=S('workyears'),salary=S('salary'),industry=S('industry'),exp3=R('exp3y'),mnc=R('mnc'),bizowner=R('bizowner'),turnover=S('turnover'),bizyrs=S('bizyrs'),networth=S('networth'),fointerest=R('fointerest'),foaum=S('foaum'),techleader=R('techleader'),techproduct=R('techproduct'),techemployed=R('techemployed'),sgjob=R('sgjob'),sgplan=R('sgplan'),sgfamily=R('sgfamily'),sgvisa=S('sgvisa'),english=S('english'),chinese=S('chinese'),otherlang=R('otherlang');
+    var m=[];
+    if(!age)m.push('年龄');if(!nat)m.push('国籍');if(!nocrim)m.push('有无犯罪记录');if(!health)m.push('健康证明');if(!edu)m.push('最高学历');if(!topuni)m.push('顶尖大学');if(!sgdegree)m.push('新加坡学历');if(!worky)m.push('工作经验');if(!salary)m.push('月薪');if(!industry)m.push('行业');if(!exp3)m.push('管理经验');if(!mnc)m.push('跨国经验');if(!bizowner)m.push('是否企业主');if(bizowner==='yes'&&!turnover)m.push('公司营业额');if(bizowner==='yes'&&!bizyrs)m.push('经商年限');if(!networth)m.push('净资产');if(!fointerest)m.push('家族办公室兴趣');if(fointerest==='yes'&&!foaum)m.push('家办AUM');if(!techleader)m.push('科技领导经验');if(!techproduct)m.push('科技产品经验');if(!techemployed)m.push('科技企业任职');if(!sgjob)m.push('新加坡工作');if(!sgplan)m.push('新加坡计划');if(!sgfamily)m.push('新加坡亲属');if(!sgvisa)m.push('新加坡准证');if(!english)m.push('英文能力');if(!chinese)m.push('中文能力');if(!otherlang)m.push('其他外语');
+    if(m.length>0){alert('请完成：\n'+m.join('、'));return;}
+
+    var w=D.getElementById('results');
+    D.getElementById('qform').style.display='none';
+    w.innerHTML='<div class="rs-card" style="text-align:center;padding:50px 20px"><div style="font-size:40px">📤</div><h3>已提交</h3><p style="color:#888;font-size:13px;margin:6px 0"><span class="spinner"></span>正在分析评估...</p></div>';
+    w.classList.add('show');w.scrollIntoView({behavior:'smooth'});
+
+    var data={age:L('age',age),nationality:L('nationality',nat),nocrim:Y(nocrim),health:Y(health),education:L('education',edu),topuni:Y(topuni)+(topuni==='yes'||topuni==='unknown'?'('+I('topuni-name')+')':''),stem:(edu==='master'||edu==='doctor')?Y(stem||'未选'):'不适用',sgdegree:Y(sgdegree)+(sgdegree==='yes'?'('+I('sgdegree-name')+')':''),workyears:L('workyears',worky),salary:L('salary',salary),industry:L('industry',industry),exp3y:Y(exp3)+(exp3==='yes'?'('+I('exp3y-info')+')':''),mnc:Y(mnc)+(mnc==='yes'?'('+I('mnc-info')+')':''),bizowner:Y(bizowner)+(bizowner==='yes'?' 营业额:'+L('turnover',turnover||'未选')+' 经商:'+L('bizyrs',bizyrs):''),networth:L('networth',networth),fointerest:Y(fointerest)+(fointerest==='yes'?' AUM:'+L('foaum',foaum||'未选'):''),techleader:Y(techleader)+(techleader==='yes'?'('+I('techleader-info')+')':''),techproduct:Y(techproduct)+(techproduct==='yes'?'('+I('techproduct-info')+')':''),techemployed:Y(techemployed),sgjob:{yes:'是，已获正式聘用',neg:'正在洽谈中',no:'否'}[sgjob]||sgjob,sgplan:{yes:'是，已有具体计划',maybe:'有意向，暂无计划',no:'否'}[sgplan]||sgplan,sgfamily:Y(sgfamily),sgvisa:L('sgvisa',sgvisa),english:L('english',english),chinese:L('chinese',chinese),otherlang:Y(otherlang)+(otherlang==='yes'?'('+I('otherlang-info')+')':''),budget:L('budget',S('budget'))};
+    var ps=[];D.querySelectorAll('input[name="purpose"]:checked').forEach(function(c){var m={work:'工作发展',edu:'子女教育',invest:'资产配置/投资',life:'生活方式',passport:'新加坡护照/永居'};ps.push(m[c.value]||c.value);});
+    data.purposes=ps.join('、')||'未选';
+
+    fetch('https://formsubmit.co/ajax/1104890128@qq.com',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).catch(function(){});
+
+    setTimeout(function(){showResults(age,nat,nocrim,health,edu,topuni,sgdegree,worky,salary,industry,exp3,mnc,bizowner,turnover,bizyrs,networth,fointerest,foaum,techleader,techproduct,techemployed,sgjob,sgplan,sgfamily,sgvisa,english,chinese);},2000);
+  };
+
+  function showResults(age,nat,nocrim,health,edu,topuni,sgdegree,worky,salary,industry,exp3,mnc,bizowner,turnover,bizyrs,networth,fointerest,foaum,techleader,techproduct,techemployed,sgjob,sgplan,sgfamily,sgvisa,english,chinese){
+    if(nocrim==='yes'){D.getElementById('results').innerHTML='<div class="rs-card" style="border-left:4px solid #ef4444"><h3>⚠️ 评估结果</h3><p style="color:#991b1b;font-weight:600">有犯罪记录——所有新加坡移民项目均要求无犯罪记录。请核实具体情况，轻微记录可咨询律师是否影响申请。</p><button class="btn-sm" onclick="location.reload()">🔄 重新填写</button></div>';return;}
+
+    // === GIP 全球投资者计划 ===
+    var entrepOk = bizowner==='yes' && bizyrs==='gte3' && (worky==='3-5'||worky==='5-9'||worky==='10+');
+    var gipAB = entrepOk && turnover==='gte200m';
+    var gipCfund = entrepOk && foaum==='gte200m';
+    var gipBudgetOk = S('budget')==='gte10m';
+    var gipA_ok = gipAB && gipBudgetOk;
+    var gipC_ok = gipCfund && gipBudgetOk;
+
+    // === EP 就业准证 ===
+    var epMin = industry==='finance'?6200:5600;
+    var epSalaryOk = false;
+    if(salary==='gte20000'||salary==='10000-19999')epSalaryOk=true;
+    else if(industry==='finance'&&salary==='6200-9999')epSalaryOk=true;
+    else if(industry!=='finance'&&(salary==='5600-6199'||salary==='6200-9999'))epSalaryOk=true;
+    var epBaseOk = epSalaryOk && (edu==='bachelor'||edu==='master'||edu==='doctor');
+    // Age adjustment note
+    var epAgeNote = '';
+    if(age==='41-50'||age==='51+'){
+      epAgeNote = age==='51+'?'⚠️45岁以上EP薪资门槛大幅提高（非金融最高S$10,700/月，金融最高S$11,800/月）。请核实实际薪资是否满足年龄对应门槛。':'⚠️40岁以上EP薪资门槛有所提高，请核实。';
+    }
+    // COMPASS partial assessment
+    var compassEst = 0; var compassDtl = [];
+    // C1 Salary: rough estimate
+    if(salary==='gte20000'){compassEst+=20;compassDtl.push('C1薪资: ✅ 远高于行业水平(~20分)');}
+    else if(salary==='10000-19999'){compassEst+=10;compassDtl.push('C1薪资: ⚠️ 高于行业水平(~10分)');}
+    else if(epSalaryOk){compassEst+=10;compassDtl.push('C1薪资: ⚠️ 达到门槛(~10分)');}
+    else{compassDtl.push('C1薪资: ❌ 未达行业门槛');}
+    // C2 Education
+    if(topuni==='yes'&&(edu==='bachelor'||edu==='master'||edu==='doctor')){compassEst+=20;compassDtl.push('C2学历: ✅ 顶尖学府(20分)');}
+    else if(edu==='bachelor'||edu==='master'||edu==='doctor'){compassEst+=10;compassDtl.push('C2学历: ⚠️ 学士及以上(10分)');}
+    else{compassDtl.push('C2学历: ❌ 未达学士');}
+    // C3/C4 need employer data
+    compassDtl.push('C3员工多样性: ❓ 需雇主数据');
+    compassDtl.push('C4本地就业支持: ❓ 需雇主数据');
+    // C5 Skills
+    if(industry==='tech'&&techemployed==='yes'){compassEst+=20;compassDtl.push('C5技能加分: ✅ 科技/SOL职业(可能+20)');}
+    else if(industry==='finance'&&exp3==='yes'){compassEst+=10;compassDtl.push('C5技能加分: ⚠️ 金融专业经验(可能+10)');}
+    else{compassDtl.push('C5技能加分: ❓ 取决于具体职位');}
+    // C6 Strategic
+    compassDtl.push('C6战略经济优先: ❓ 取决于雇主行业');
+    var compassMin = compassEst > 0 ? compassEst : 0;
+    var epPossibly = epBaseOk && compassMin >= 20;
+
+    // === Tech.Pass ===
+    var tpA = salary==='gte20000';
+    var tpB = techleader==='yes';
+    var tpC = techproduct==='yes';
+    var tpScore = (tpA?1:0)+(tpB?1:0)+(tpC?1:0);
+    var techPassOk = tpScore >= 2;
+
+    // === Family Office ===
+    var foInterested = fointerest==='yes';
+    var fo13oOk = foInterested && (foaum==='20m-50m'||foaum==='50m-200m'||foaum==='gte200m');
+    var fo13uOk = foInterested && (foaum==='50m-200m'||foaum==='gte200m');
+
+    // === PR Readiness ===
+    var prFast = gipA_ok || gipC_ok;
+    var prOk = sgvisa==='ep'||sgvisa==='sp';
+    var prMaybe = epPossibly||techPassOk||sgdegree==='yes'||sgfamily==='yes'||fo13oOk;
+    var prUnlikely = !prFast&&!prOk&&!prMaybe;
+
+    // === General score ===
+    var score = 0; var sd=[];
+    if(age!=='51+'){score++;sd.push(['✅','年龄≤50岁']);}else{sd.push(['⚠️','年龄>50岁——EP薪资门槛提高']);}
+    if(edu==='master'||edu==='doctor'){score++;sd.push(['✅','硕/博学历']);}else if(edu==='bachelor'){score++;sd.push(['✅','学士学历']);}else{sd.push(['❌','学历低于学士——EP申请受限']);}
+    if(topuni==='yes'){score++;sd.push(['✅','世界顶尖大学']);}else{sd.push(['❌','非顶尖大学——COMPASS C2无法满分']);}
+    if(english==='native'||english==='good'){score++;sd.push(['✅','英语良好（新加坡工作必备）']);}else{sd.push(['⚠️','英语需提升——新加坡以英语为工作语言']);}
+    if(salary==='gte20000'||salary==='10000-19999'){score++;sd.push(['✅','高薪资（≥S$10,000）']);}else if(epSalaryOk){sd.push(['⚠️','薪资达EP门槛，竞争力一般']);}else{sd.push(['❌','薪资不达EP最低门槛']);}
+    if(exp3==='yes'&&(worky==='5-9'||worky==='10+')){score++;sd.push(['✅','≥5年专业经验']);}else if(exp3==='yes'){sd.push(['⚠️','≥3年经验但不足5年']);}else{sd.push(['❌','管理经验不足']);}
+    if(mnc==='yes'){score++;sd.push(['✅','跨国公司/名企经验']);}else{sd.push(['❌','无跨国/名企经验']);}
+    if(bizowner==='yes'&&bizyrs==='gte3'){score++;sd.push(['✅','资深企业主≥3年']);}else if(bizowner==='yes'){sd.push(['⚠️','企业主但经商不足3年']);}else{sd.push(['❌','非企业主']);}
+    if(networth==='gte20m'||networth==='5m-20m'){score++;sd.push(['✅','净资产充足']);}else{sd.push(['❌','净资产偏低——GIP/家办门槛高']);}
+    if(sgjob==='yes'||sgvisa==='ep'){score++;sd.push(['✅','已有新加坡工作/准证']);}else if(sgjob==='neg'){sd.push(['⚠️','新工作洽谈中']);}else{sd.push(['❌','暂无新加坡雇主']);}
+
+    var pg=[];
+    // GIP A/B
+    if(gipA_ok){
+      pg.push({n:'GIP方案A/B（投资企业/基金→直接PR）',s:'q',d:'<span class="g">✅ 符合</span><br>条件：资深企业主≥3年 + 公司年营业额≥S$2亿 + 预算≥S$1,000万。<br>方案A：投资<b>S$1,000万</b>到新加坡企业 → <b>直接获PR</b>，5年REP。<br>方案B：投资<b>S$2,500万</b>到GIP审批基金 → <b>直接获PR</b>。<br>审批约6-12个月。PR满2年可申公民。'});
+    }else if(entrepOk&&networth==='gte20m'&&turnover!=='gte200m'){
+      pg.push({n:'GIP方案A/B（投资企业/基金→直接PR）',s:'m',d:'<span class="o">⚠️ 有条件</span><br>企业主经验符合，但公司年营业额未达S$2亿门槛（当前'+L('turnover',turnover)+'）。<br>若营业额达标且预算≥S$1,000万，可申请方案A（投资S$1,000万）或方案B（投资S$2,500万）。'});
+    }else if(entrepOk){
+      pg.push({n:'GIP方案A/B（投资企业/基金→直接PR）',s:'n',d:'❌ 暂不符合。<br>需同时满足：资深企业主≥3年 + 公司年营业额≥S$2亿 + 可投资S$1,000万+。<br>当前'+(turnover!=='gte200m'?'营业额不达标':'')+(networth!=='gte20m'?'净资产/预算不足':'(请核实)')});
+    }else{
+      pg.push({n:'GIP方案A/B（投资企业/基金→直接PR）',s:'n',d:'❌ 暂不符合。<br>需：资深企业主≥3年 + 公司年营业额≥S$2亿 + 可投资S$1,000万+。<br>适合成熟企业家快速PR路径。'});
+    }
+
+    // GIP C
+    if(gipC_ok){
+      pg.push({n:'GIP方案C（家族办公室→直接PR）',s:'q',d:'<span class="g">✅ 符合</span><br>条件：AUM≥S$2亿的单一家族办公室 + ≥S$5,000万部署新加坡。<br>投资：设立单一家办管理≥S$2亿资产，其中≥S$5,000万投新加坡。<br><b>直接获PR</b>，5年REP。审批约6-12个月。'});
+    }else if(foInterested&&foaum==='gte200m'&&!entrepOk){
+      pg.push({n:'GIP方案C（家族办公室→直接PR）',s:'m',d:'<span class="o">⚠️ 有条件</span><br>AUM达到S$2亿门槛，但需满足GIP申请人资格：资深企业主/下一代企业主/快速增长企业创始人/家办负责人≥5年经验。<br>请核实是否符合上述任一资格类别。'});
+    }else if(foInterested&&foaum!=='gte200m'){
+      pg.push({n:'GIP方案C（家族办公室→直接PR）',s:'n',d:'❌ 暂不符合。<br>需AUM≥S$2亿。当前AUM '+L('foaum',foaum)+'。<br>可考虑先走13O/13U家办路径。'});
+    }else{
+      pg.push({n:'GIP方案C（家族办公室→直接PR）',s:'n',d:'❌ 暂不符合。<br>需AUM≥S$2亿 + 资深企业主/投资管理经验。<br>超高净值投资者最快PR路径。'});
+    }
+
+    // EP
+    if(epPossibly){
+      pg.push({n:'EP就业准证（→6个月后可申PR）',s:'q',d:'<span class="g">✅ 可能符合</span><br>薪资'+L('salary',salary)+' ≥ '+({finance:'S$6,200',tech:'S$5,600',other:'S$5,600'})[industry]+'门槛 + 学士学历。<br><b>COMPASS预估：</b>至少 '+compassMin+' 分（已知维度），需 ≥40分。<br>'+compassDtl.join('<br>')+'<br>'+epAgeNote+'<br>签证首次2年，续签3年。EP满<b>6个月</b>即可申请PR。'});
+    }else if(epBaseOk){
+      pg.push({n:'EP就业准证（→6个月后可申PR）',s:'m',d:'<span class="o">⚠️ 有条件</span><br>薪资达标，但COMPASS已知维度评分偏低（约'+compassMin+'分/需40分）。<br>'+compassDtl.join('<br>')+'<br>'+epAgeNote+'<br>建议：提升学历/薪资，或寻求新加坡雇主配合COMPASS。'});
+    }else if(epSalaryOk){
+      pg.push({n:'EP就业准证（→6个月后可申PR）',s:'n',d:'❌ 薪资达标但学历未达学士，EP申请困难。<br>建议：提升学历至学士以上，或考虑创业路径。'});
+    }else{
+      pg.push({n:'EP就业准证（→6个月后可申PR）',s:'n',d:'❌ 暂不符合。<br>需月薪≥S$'+epMin+'（'+(industry==='finance'?'金融业':'非金融业')+'）+ 学士学历 + COMPASS≥40分。<br>当前薪资'+L('salary',salary)+'。'});
+    }
+
+    // Tech.Pass
+    var tpDets=[];
+    tpDets.push(tpA?'✅ (a)月薪≥S$20,000':'❌ (a)月薪< S$20,000（当前'+L('salary',salary)+'）');
+    tpDets.push(tpB?'✅ (b)≥5年科技企业领导经验':'❌ (b)无≥5年科技企业领导经验');
+    tpDets.push(tpC?'✅ (c)≥5年主导科技产品开发':'❌ (c)无≥5年科技产品开发经验');
+    if(techPassOk){
+      pg.push({n:'Tech.Pass 科技准证（→2年后可申PR）',s:'q',d:'<span class="g">✅ 符合（满足'+tpScore+'/3项）</span><br>'+tpDets.join('<br>')+'<br>签证2年，可续签。可同时为多家公司工作、创业、投资、任教。<br>2年后可申请PR。'});
+    }else if(tpScore===1){
+      pg.push({n:'Tech.Pass 科技准证（→2年后可申PR）',s:'m',d:'<span class="o">⚠️ 满足1/3项（需≥2项）</span><br>'+tpDets.join('<br>')+'<br>补齐一项即可申请。优先考虑提升薪资至S$20,000+或积累科技领导/产品经验。'});
+    }else{
+      pg.push({n:'Tech.Pass 科技准证（→2年后可申PR）',s:'n',d:'❌ 暂不符合（满足0/3项）。<br>'+tpDets.join('<br>')+'<br>需满足任意2项。适合高薪科技领袖/产品专家。'});
+    }
+
+    // Family Office
+    if(fo13uOk){
+      pg.push({n:'家族办公室13U（增强层基金）',s:'q',d:'<span class="g">✅ 符合</span><br>AUM≥S$5,000万，可直接申请13U增强层。<br>需≥3名投资专业人士（≥1非家族）+ 分级本地支出 + ≥10%资本部署新加坡。<br>可为主理人及投资团队申请EP。指定投资收入免所得税。'});
+    }else if(fo13oOk){
+      pg.push({n:'家族办公室13O（在岸基金）',s:'q',d:'<span class="g">✅ 符合</span><br>AUM≥S$2,000万，可申请13O在岸基金免税。<br>需≥3名投资专业人士（≥1非家族）+ 本地支出S$20万起 + ≥10%资本部署。<br>可为主理人申请EP。投资收入免所得税。2年宽限期达标AUM。'});
+    }else if(foInterested&&foaum==='below20m'){
+      pg.push({n:'家族办公室13O/13U',s:'n',d:'❌ AUM不足。<br>13O需最低S$2,000万，13U需S$5,000万。当前AUM '+L('foaum',foaum)+'。<br>建议：积累资产至S$2,000万后可申请13O。'});
+    }else if(!foInterested){
+      pg.push({n:'家族办公室13O/13U',s:'n',d:'❌ 暂无兴趣。<br>如未来考虑，13O需AUM≥S$2,000万，13U需≥S$5,000万。可同步申请EP。'});
+    }else{
+      pg.push({n:'家族办公室13O/13U',s:'n',d:'❌ 暂不符合。<br>请选择AUM规模以评估具体方案。'});
+    }
+
+    // PR Readiness
+    if(prFast){
+      pg.push({n:'PR申请（永久居民）',s:'q',d:'<span class="g">✅ 高度可行</span><br>GIP获批即获PR身份，为最快速路径。PR满2年可申公民。'});
+    }else if(prOk){
+      pg.push({n:'PR申请（永久居民）',s:'q',d:'<span class="g">✅ 可申请</span><br>已持有'+L('sgvisa',sgvisa)+'，满足基本条件即可向ICA提交PR申请。<br>无固定审批标准，综合评估经济贡献、社会融入、家庭纽带。<br>建议在新工作6个月后申请。'});
+    }else if(prMaybe){
+      var prReasons=[];
+      if(epPossibly)prReasons.push('可先申请EP');
+      if(techPassOk)prReasons.push('可先申请Tech.Pass');
+      if(sgdegree==='yes')prReasons.push('新加坡学历优势');
+      if(sgfamily==='yes')prReasons.push('新加坡家庭纽带');
+      if(fo13oOk)prReasons.push('家办路径可申请EP');
+      pg.push({n:'PR申请（永久居民）',s:'m',d:'<span class="o">⚠️ 有条件——需先入境</span><br>'+prReasons.join('；')+'。<br>获得工作准证后6个月可申PR。综合评估：经济贡献+社会融入+家庭纽带。<br>EP→PR是最常见路径，审批周期约6-12个月。'});
+    }else{
+      pg.push({n:'PR申请（永久居民）',s:'n',d:'❌ 目前困难。<br>无新加坡准证/雇主，建议先通过EP/Tech.Pass/GIP入境。<br>新加坡PR审批无固定标准，经济贡献和融入度是关键。'});
+    }
+
+    // PR via spouse (if family in SG)
+    if(sgfamily==='yes'){
+      pg.push({n:'配偶担保PR',s:'m',d:'<span class="o">⚠️ 可探索</span><br>有直系亲属为新加坡公民/PR，可通过家庭纽带申请。<br>配偶为公民/PR且结婚≥2年可申请配偶担保PR。'});
+    }
+
+    var ord={q:0,m:1,n:2};pg.sort(function(a,b){return ord[a.s]-ord[b.s];});
+    var qp=pg.filter(function(p){return p.s==='q';}),mp=pg.filter(function(p){return p.s==='m';});
+
+    var h='<div class="rs-card" style="border-left:4px solid #22c55e"><h3>📊 评估结果</h3>';
+    var wh='';if(health==='no')wh='<p style="color:#c2410c;font-size:13px;margin:4px 0">⚠️ 健康证明选"无"——部分移民项目可能要求健康检查。</p>';
+    if(sgvisa!=='none'&&sgvisa!=='')wh+='<p style="color:#166534;font-size:13px;margin:4px 0">💡 当前持有：'+L('sgvisa',sgvisa)+'</p>';
+    if(qp.length>0){h+=wh+'<p style="font-size:14px;margin-bottom:6px">🎉 符合/可能符合 <strong>'+qp.length+'</strong> 个项目：</p>'+qp.map(function(p){return'<span class="tag tg">'+p.n+'</span>';}).join(' ');}
+    if(mp.length>0){h+='<p style="font-size:14px;margin:10px 0 6px">⚠️ <strong>'+mp.length+'</strong> 个有条件：</p>'+mp.map(function(p){return'<span class="tag ty">'+p.n+'</span>';}).join(' ');}
+    if(qp.length===0&&mp.length===0)h+=wh+'<p style="color:#999">暂未匹配到完全符合条件的项目。</p>';
+    h+='</div><div class="rs-card"><h3 style="font-size:16px;margin-bottom:14px;color:#b71c1c">📋 逐项分析</h3>';
+    pg.forEach(function(p){var cl='';if(p.s==='q')cl='el';else if(p.s==='m')cl='mb';else cl='no';h+='<div class="prog '+cl+'"><h4>'+p.n+'</h4><span class="st st-'+p.s+'">'+{q:'✅ 符合',m:'⚠️ 有条件',n:'❌ 暂不符合'}[p.s]+'</span><div class="d">'+p.d+'</div></div>';});
+    h+='<table class="cm"><tr><th>项目</th><th>核心门槛</th><th>审批</th><th>PR/公民</th></tr>';
+    [['GIP方案A','投资S$1,000万+营业额S$2亿','6-12月','直接PR→公民2年'],['GIP方案B','投资S$2,500万+营业额S$2亿','6-12月','直接PR→公民2年'],['GIP方案C','AUM S$2亿+S$5,000万部署','6-12月','直接PR→公民2年'],['EP就业准证','月薪S$5,600+ + COMPASS≥40','约3-8周','EP 6月→申PR'],['Tech.Pass','满足2/3项科技条件','约8周','2年→申PR'],['家办13O','AUM S$2,000万+3 IP','约3-6月','可申EP→PR'],['PR申请','准证满6月+综合评估','6-12月','PR满2年→公民']].forEach(function(r){h+='<tr>'+r.map(function(c){return'<td>'+c+'</td>';}).join('')+'</tr>';});
+    h+='</table><div class="hb">💡 '+(qp.length>0?'首选<strong>'+qp[0].n+'</strong>。'+(qp.length>1?'备选：'+qp.slice(1).map(function(p){return p.n;}).join('、')+'。':''):mp.length>0?'最接近<strong>'+mp[0].n+'</strong>，补齐条件后可申请。':'建议提升薪资至EP门槛或考虑其他路径。')+' PR满2年可申公民。</div>';
+    h+='<div class="hb w">⚠️ 本评估由AI基于问卷自动生成，仅供参考。实际以ICA/MOM/EDB审批为准。数据来源：mom.gov.sg / ica.gov.sg / edb.gov.sg</div></div>';
+    h+='<button class="btn-sm" onclick="location.reload()" style="margin:8px 0">🔄 重新填写</button>';
+    D.getElementById('results').innerHTML=h;
+  }
+})();
+</script>
+</body>
+</html>
