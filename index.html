@@ -152,6 +152,7 @@ table.cm td:first-child{text-align:left;font-weight:500}
   D.querySelectorAll('input[type="checkbox"]').forEach(function(cb){cb.addEventListener('change',function(){this.parentElement.classList.toggle('sel',this.checked);});});
   D.getElementById('education').addEventListener('change',function(){D.getElementById('fg-stem').style.display=(this.value==='master'||this.value==='doctor')?'block':'none';});
 
+  window.goBack=function(){D.getElementById('results').classList.remove('show');D.getElementById('qform').style.display='';setTimeout(function(){D.getElementById('qform').scrollIntoView({behavior:'smooth'});},50);};
   function onChange(n,v){
     if(n==='topuni')D.getElementById('dt-topuni').classList.toggle('show',v==='yes'||v==='unknown');
     if(n==='sgdegree')D.getElementById('dt-sgdegree').classList.toggle('show',v==='yes');
@@ -185,7 +186,7 @@ table.cm td:first-child{text-align:left;font-weight:500}
   };
 
   function showResults(age,nat,nocrim,health,edu,topuni,sgdegree,worky,salary,industry,exp3,mnc,bizowner,turnover,bizyrs,networth,fointerest,foaum,techleader,techproduct,techemployed,sgjob,sgplan,sgfamily,sgvisa,english,chinese){
-    if(nocrim==='yes'){D.getElementById('results').innerHTML='<div class="rs-card" style="border-left:4px solid #ef4444"><h3>⚠️ 评估结果</h3><p style="color:#991b1b;font-weight:600">有犯罪记录——所有新加坡移民项目均要求无犯罪记录。请核实具体情况，轻微记录可咨询律师是否影响申请。</p><button class="btn-sm" onclick="location.reload()">🔄 重新填写</button></div>';return;}
+    if(nocrim==='yes'){D.getElementById('results').innerHTML='<div class="rs-card" style="border-left:4px solid #ef4444"><h3>⚠️ 评估结果</h3><p style="color:#991b1b;font-weight:600">有犯罪记录——所有新加坡移民项目均要求无犯罪记录。请核实具体情况，轻微记录可咨询律师是否影响申请。</p><button class="btn-sm" onclick="goBack()">✏️ 返回修改</button></div>';return;}
 
     // === GIP 全球投资者计划 ===
     var entrepOk = bizowner==='yes' && bizyrs==='gte3' && (worky==='3-5'||worky==='5-9'||worky==='10+');
@@ -359,7 +360,7 @@ table.cm td:first-child{text-align:left;font-weight:500}
     [['GIP方案A','投资S$1,000万+营业额S$2亿','6-12月','直接PR→公民2年'],['GIP方案B','投资S$2,500万+营业额S$2亿','6-12月','直接PR→公民2年'],['GIP方案C','AUM S$2亿+S$5,000万部署','6-12月','直接PR→公民2年'],['EP就业准证','月薪S$5,600+ + COMPASS≥40','约3-8周','EP 6月→申PR'],['Tech.Pass','满足2/3项科技条件','约8周','2年→申PR'],['家办13O','AUM S$2,000万+3 IP','约3-6月','可申EP→PR'],['PR申请','准证满6月+综合评估','6-12月','PR满2年→公民']].forEach(function(r){h+='<tr>'+r.map(function(c){return'<td>'+c+'</td>';}).join('')+'</tr>';});
     h+='</table><div class="hb">💡 '+(qp.length>0?'首选<strong>'+qp[0].n+'</strong>。'+(qp.length>1?'备选：'+qp.slice(1).map(function(p){return p.n;}).join('、')+'。':''):mp.length>0?'最接近<strong>'+mp[0].n+'</strong>，补齐条件后可申请。':'建议提升薪资至EP门槛或考虑其他路径。')+' PR满2年可申公民。</div>';
     h+='<div class="hb w">⚠️ 本评估由AI基于问卷自动生成，仅供参考。实际以ICA/MOM/EDB审批为准。数据来源：mom.gov.sg / ica.gov.sg / edb.gov.sg</div></div>';
-    h+='<button class="btn-sm" onclick="location.reload()" style="margin:8px 0">🔄 重新填写</button>';
+    h+='<button class="btn-sm" onclick="goBack()" style="margin:8px 0">✏️ 返回修改</button>';
     D.getElementById('results').innerHTML=h;
   }
 })();
