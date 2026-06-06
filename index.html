@@ -186,7 +186,7 @@ table.cm td:first-child{text-align:left;font-weight:500}
   };
 
   function showResults(age,nat,nocrim,health,edu,topuni,sgdegree,worky,salary,industry,exp3,mnc,bizowner,turnover,bizyrs,networth,fointerest,foaum,techleader,techproduct,techemployed,sgjob,sgplan,sgfamily,sgvisa,english,chinese){
-    if(nocrim==='yes'){D.getElementById('results').innerHTML='<div class="rs-card" style="border-left:4px solid #ef4444"><h3>⚠️ 评估结果</h3><p style="color:#991b1b;font-weight:600">有犯罪记录——所有新加坡移民项目均要求无犯罪记录。请核实具体情况，轻微记录可咨询律师是否影响申请。</p><button class="btn-sm" onclick="goBack()">✏️ 返回修改</button></div>';return;}
+    if(nocrim==='no'){D.getElementById('results').innerHTML='<div class="rs-card" style="border-left:4px solid #ef4444"><h3>⚠️ 评估结果</h3><p style="color:#991b1b;font-weight:600">经核实，您可能存在犯罪记录。新加坡所有移民项目均要求申请人提供无犯罪记录证明。如有特殊情况，建议咨询持牌移民律师评估可行性。</p><button class="btn-sm" onclick="goBack()">✏️ 返回修改</button></div>';return;}
 
     // === GIP 全球投资者计划 ===
     var entrepOk = bizowner==='yes' && bizyrs==='gte3' && (worky==='3-5'||worky==='5-9'||worky==='10+');
