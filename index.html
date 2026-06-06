@@ -69,8 +69,8 @@ table.cm td:first-child{text-align:left;font-weight:500}
 <div class="card"><h2><span class="num">1</span> 基本信息</h2>
 <div class="fg"><label class="q">年龄</label><select id="age"><option value="">请选择</option><option value="18-30">18-30岁</option><option value="31-40">31-40岁</option><option value="41-50">41-50岁</option><option value="51+">51岁及以上</option></select></div>
 <div class="fg"><label class="q">国籍/户籍</label><select id="nationality"><option value="">请选择</option><option value="cn">中国内地居民</option><option value="cn-foreign">中国籍+已取得外国永居</option><option value="mo-tw">澳门/台湾居民</option><option value="foreign">外国国民</option></select></div>
-<div class="fg"><label class="q">有无犯罪记录</label><div class="radio-row"><label class="ropt"><input type="radio" name="nocrim" value="yes"> 有</label><label class="ropt"><input type="radio" name="nocrim" value="no"> 无</label></div></div>
-<div class="fg"><label class="q">有无健康证明</label><div class="radio-row"><label class="ropt"><input type="radio" name="health" value="yes"> 有</label><label class="ropt"><input type="radio" name="health" value="no"> 无</label></div></div>
+<div class="fg"><label class="q">是否有无犯罪记录</label><div class="radio-row"><label class="ropt"><input type="radio" name="nocrim" value="yes"> 有</label><label class="ropt"><input type="radio" name="nocrim" value="no"> 无</label></div></div>
+<div class="fg"><label class="q">是否有健康证明</label><div class="radio-row"><label class="ropt"><input type="radio" name="health" value="yes"> 有</label><label class="ropt"><input type="radio" name="health" value="no"> 无</label></div></div>
 </div>
 
 <div class="card"><h2><span class="num">2</span> 学历背景</h2>
@@ -84,7 +84,7 @@ table.cm td:first-child{text-align:left;font-weight:500}
 
 <div class="card"><h2><span class="num">3</span> 工作与收入</h2>
 <div class="fg"><label class="q">总工作经验年限</label><select id="workyears"><option value="">请选择</option><option value="0-2">0-2年</option><option value="3-5">3-5年</option><option value="5-9">5-9年</option><option value="10+">10年及以上</option></select></div>
-<div class="fg"><label class="q">当前月薪（新元 SGD）<span class="hint">(含基本工资+固定津贴，EP申请以此为准)</span></label><select id="salary"><option value="">请选择</option><option value="below5600">低于 S$5,600</option><option value="5600-6199">S$5,600 - S$6,199</option><option value="6200-9999">S$6,200 - S$9,999</option><option value="10000-19999">S$10,000 - S$19,999</option><option value="gte20000">S$20,000 及以上</option></select></div>
+<div class="fg"><label class="q">当前月薪（新元 SGD）<span class="hint">(含基本工资+固定津贴，EP申请以此为准)</span></label><select id="salary"><option value="">请选择</option><option value="no-sg-salary">无新加坡工资</option><option value="below5600">低于 S$5,600</option><option value="5600-6199">S$5,600 - S$6,199</option><option value="6200-9999">S$6,200 - S$9,999</option><option value="10000-19999">S$10,000 - S$19,999</option><option value="gte20000">S$20,000 及以上</option></select></div>
 <div class="fg"><label class="q">所在行业</label><select id="industry"><option value="">请选择</option><option value="finance">金融服务（银行/保险/资管）</option><option value="tech">科技/互联网/IT</option><option value="other">其他行业（制造/贸易/医疗等）</option></select></div>
 <div class="fg"><label class="q">是否拥有≥3年管理/专业级别工作经验？</label><div class="radio-row"><label class="ropt"><input type="radio" name="exp3y" value="yes"> 是</label><label class="ropt"><input type="radio" name="exp3y" value="no"> 否</label></div>
 <div id="dt-exp3y" class="detail-input"><span class="label-sm">简述（公司/职位/年限）：</span><input type="text" id="exp3y-info" placeholder="例如：Google Engineering Manager 5年"></div></div>
@@ -145,7 +145,7 @@ table.cm td:first-child{text-align:left;font-weight:500}
   function S(id){var e=D.getElementById(id);return e?e.value:'';}
   function I(id){var e=D.getElementById(id);return e?e.value.trim():'';}
   function Y(v){return v==='yes'?'是':v==='no'?'否':(v||'未填');}
-  function L(id,v){var m={'age':{'18-30':'18-30岁','31-40':'31-40岁','41-50':'41-50岁','51+':'51岁及以上'},'nationality':{'cn':'中国内地居民','cn-foreign':'中国籍+已取得外国永居','mo-tw':'澳门/台湾居民','foreign':'外国国民'},'education':{'doctor':'博士','master':'硕士','bachelor':'学士(本科)','associate':'大专/副学士','highschool':'高中及以下'},'workyears':{'0-2':'0-2年','3-5':'3-5年','5-9':'5-9年','10+':'10年及以上'},'salary':{'below5600':'低于S$5,600','5600-6199':'S$5,600-S$6,199','6200-9999':'S$6,200-S$9,999','10000-19999':'S$10,000-S$19,999','gte20000':'S$20,000+'},'industry':{'finance':'金融服务','tech':'科技/互联网/IT','other':'其他行业'},'turnover':{'below10m':'低于S$1,000万','10m-50m':'S$1,000万-S$5,000万','50m-200m':'S$5,000万-S$2亿','gte200m':'S$2亿+'},'bizyrs':{'lt3':'不足3年','gte3':'3年及以上'},'networth':{'below1m':'低于S$100万','1m-5m':'S$100万-S$500万','5m-20m':'S$500万-S$2,000万','gte20m':'S$2,000万+'},'foaum':{'below20m':'低于S$2,000万','20m-50m':'S$2,000万-S$5,000万','50m-200m':'S$5,000万-S$2亿','gte200m':'S$2亿+'},'english':{'native':'精通(雅思≥7.0)','good':'良好(雅思≥6.0)','basic':'基础','none':'不会'},'chinese':{'native':'母语/精通','good':'良好','basic':'基础','none':'不会'},'sgvisa':{'none':'无','ep':'EP就业准证','sp':'S Pass','dp':'DP家属准证','ltvp':'LTVP长期探访准证','stp':'学生证','other':'其他'},'budget':{'lt100k':'低于S$10万','100k-1m':'S$10万-S$100万','1m-10m':'S$100万-S$1,000万','gte10m':'S$1,000万+'}};return (m[id]||{})[v]||v;}
+  function L(id,v){var m={'age':{'18-30':'18-30岁','31-40':'31-40岁','41-50':'41-50岁','51+':'51岁及以上'},'nationality':{'cn':'中国内地居民','cn-foreign':'中国籍+已取得外国永居','mo-tw':'澳门/台湾居民','foreign':'外国国民'},'education':{'doctor':'博士','master':'硕士','bachelor':'学士(本科)','associate':'大专/副学士','highschool':'高中及以下'},'workyears':{'0-2':'0-2年','3-5':'3-5年','5-9':'5-9年','10+':'10年及以上'},'salary':{'no-sg-salary':'无新加坡工资','below5600':'低于S$5,600','5600-6199':'S$5,600-S$6,199','6200-9999':'S$6,200-S$9,999','10000-19999':'S$10,000-S$19,999','gte20000':'S$20,000+'},'industry':{'finance':'金融服务','tech':'科技/互联网/IT','other':'其他行业'},'turnover':{'below10m':'低于S$1,000万','10m-50m':'S$1,000万-S$5,000万','50m-200m':'S$5,000万-S$2亿','gte200m':'S$2亿+'},'bizyrs':{'lt3':'不足3年','gte3':'3年及以上'},'networth':{'below1m':'低于S$100万','1m-5m':'S$100万-S$500万','5m-20m':'S$500万-S$2,000万','gte20m':'S$2,000万+'},'foaum':{'below20m':'低于S$2,000万','20m-50m':'S$2,000万-S$5,000万','50m-200m':'S$5,000万-S$2亿','gte200m':'S$2亿+'},'english':{'native':'精通(雅思≥7.0)','good':'良好(雅思≥6.0)','basic':'基础','none':'不会'},'chinese':{'native':'母语/精通','good':'良好','basic':'基础','none':'不会'},'sgvisa':{'none':'无','ep':'EP就业准证','sp':'S Pass','dp':'DP家属准证','ltvp':'LTVP长期探访准证','stp':'学生证','other':'其他'},'budget':{'lt100k':'低于S$10万','100k-1m':'S$10万-S$100万','1m-10m':'S$100万-S$1,000万','gte10m':'S$1,000万+'}};return (m[id]||{})[v]||v;}
 
   // Radio selection
   D.querySelectorAll('input[type="radio"]').forEach(function(r){r.addEventListener('change',function(){var row=this.closest('.radio-row');row.querySelectorAll('.ropt').forEach(function(l){l.classList.remove('sel');});this.parentElement.classList.add('sel');onChange(this.name,this.value);});});
@@ -198,7 +198,8 @@ table.cm td:first-child{text-align:left;font-weight:500}
     // === EP 就业准证 ===
     var epMin = industry==='finance'?6200:5600;
     var epSalaryOk = false;
-    if(salary==='gte20000'||salary==='10000-19999')epSalaryOk=true;
+    if(salary==='no-sg-salary'){epSalaryOk=false;}
+    else if(salary==='gte20000'||salary==='10000-19999')epSalaryOk=true;
     else if(industry==='finance'&&salary==='6200-9999')epSalaryOk=true;
     else if(industry!=='finance'&&(salary==='5600-6199'||salary==='6200-9999'))epSalaryOk=true;
     var epBaseOk = epSalaryOk && (edu==='bachelor'||edu==='master'||edu==='doctor');
