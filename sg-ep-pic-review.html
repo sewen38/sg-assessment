@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>新加坡EP单项目执行策划案（含EP-PIC）· 审核版</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f6f8;color:#1f2937;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',Arial,sans-serif;line-height:1.68}.hero{background:linear-gradient(135deg,#b71c1c,#e53935);color:#fff;text-align:center;padding:28px 18px}.hero h1{font-size:22px;margin:0 0 6px}.wrap{max-width:860px;margin:0 auto;padding:12px}.card{background:#fff;border-radius:16px;margin:10px 0 14px;padding:18px;box-shadow:0 2px 10px rgba(15,23,42,.06)}.card h2{font-size:17px;margin-bottom:12px;color:#b71c1c;border-left:4px solid #e53935;padding-left:10px}h1,h2,h3{line-height:1.35;color:#b71c1c}h1{font-size:22px;border-bottom:2px solid #fce4e4;padding-bottom:10px}h2{font-size:17px;border-left:4px solid #e53935;padding-left:10px}h3{font-size:15px}.muted{color:#667085;font-size:13px}.pill{display:inline-block;background:#fce4e4;color:#b71c1c;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;margin:3px}.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #e5e7eb;border-radius:10px;margin:10px 0}table{border-collapse:collapse;min-width:620px;width:100%;font-size:12px}th,td{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left;vertical-align:top}th{background:#f8fafc;color:#475569}.btn{border:0;border-radius:10px;padding:12px 14px;font-weight:800;cursor:pointer;text-decoration:none}.primary{background:#b71c1c;color:#fff}.secondary{background:#fce4e4;color:#b71c1c}.calc-row{margin-bottom:10px}.calc-label{display:block;font-size:13px;font-weight:700;color:#374151;margin-bottom:4px}.calc-select{width:100%;padding:10px 12px;border:1.5px solid #d1d5db;border-radius:10px;font-size:13px;background:#fff;color:#1f2937}.calc-score{display:flex;align-items:center;gap:16px;margin:16px 0 6px;padding:14px;border-radius:12px;background:#fafafa;border:2px dashed #d1d5db}.calc-score-circle{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;background:#dc2626}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.item{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:12px}.item b{display:block;color:#b71c1c;font-size:15px}.red{color:#b71c1c;font-weight:800}.note{background:#fff5f5;border:2px solid #e53935}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}@media(max-width:520px){.grid{grid-template-columns:1fr}table{min-width:560px}.hero h1{font-size:20px}}
+</style></head><body>
+<div class="hero"><h1>新加坡EP单项目 · 执行策划案（含EP-PIC）</h1><p>基于新加坡定稿版模版 · 单国家单项目减法版 · 审核稿</p></div>
+<div class="wrap">
+<div class="card" id="compassCard" style="background:linear-gradient(135deg,#fff5f5,#fff0f0);border:2px solid #e53935"><h2>📊 COMPASS 交互式计算器（EP项目保留）</h2><p class="muted">逐项选择客户条件，实时计算总分。新加坡EP申请需COMPASS框架≥40分；结果同步到正文第九章和第十二章。</p>
+<div class="calc-row"><span class="calc-label">C1 薪资（0-20分）</span><select id="selC1" class="calc-select" onchange="calcCompass()"><option value="0">低于65th百分位 → 0分</option><option value="10">65th-90th百分位 → 10分</option><option value="20">高于90th百分位 → 20分</option></select></div>
+<div class="calc-row"><span class="calc-label">C2 学历（0-20分）</span><select id="selC2" class="calc-select" onchange="calcCompass()"><option value="0">无学位同等学历 → 0分</option><option value="10">学位同等学历 → 10分</option><option value="20">顶级学府 → 20分</option></select></div>
+<div class="calc-row"><span class="calc-label">C3 员工多样性 / 国籍占比（0-20分）</span><select id="selC3" class="calc-select" onchange="calcCompass()"><option value="20">国籍占比 &lt; 5% → 20分</option><option value="10">国籍占比 5%-25% → 10分</option><option value="0">国籍占比 &gt; 25% → 0分</option></select></div>
+<div class="calc-row"><span class="calc-label">C4 本地就业支持（0-10分）</span><select id="selC4" class="calc-select" onchange="calcCompass()"><option value="0">低于50th百分位 → 0分</option><option value="10">≥ 50th百分位 → 10分</option></select></div>
+<div class="calc-row"><span class="calc-label">C5 技能加分 / 紧缺职业清单（0-20分）</span><select id="selC5" class="calc-select" onchange="calcCompass()"><option value="20">在紧缺职业清单上 → 20分</option><option value="0">不在紧缺职业清单 → 0分</option></select></div>
+<div class="calc-row"><span class="calc-label">C6 战略经济优先（0-10分）</span><select id="selC6" class="calc-select" onchange="calcCompass()"><option value="10">符合战略经济方向 → 10分</option><option value="0">不符合 → 0分</option></select></div>
+<div class="calc-score"><div class="calc-score-circle" id="scoreCircle">0</div><div><div class="muted">COMPASS 总分</div><div id="scoreVerdict" style="font-weight:800">—</div><div class="muted">目标：≥ 40 分</div></div></div>
+<div style="text-align:center;margin:12px 0"><button type="button" class="btn primary" onclick="sgEpCalcSync()">同步 COMPASS 结果到正文</button></div><p class="muted">⚠️ 实际以MOM官方COMPASS评估为准。C3/C4/C6需结合雇主公司数据，离线自评仅供预审。</p></div>
+<div class="card"><div class="actions"><button class="btn primary" onclick="window.print()">保存 / 打印 PDF</button><button class="btn secondary" onclick="document.getElementById('doc').scrollIntoView({behavior:'smooth'})">下一步：查看完整执行策划案</button></div></div>
+<div class="card" id="doc"><div class="muted">来源：新加坡定稿执行策划案模版 · 单项目减法保留 EP</div><span class="pill">新加坡</span><span class="pill">EP就业准证</span><span class="pill">EP-PIC自雇</span>
+<h1>新加坡EP大类 · 单项目执行策划案（EP雇主 + EP-PIC）</h1>
+<p><b>文档版本：</b>审核版 V1.0 ｜ <b>适用项目：</b>新加坡 Employment Pass（EP就业准证，雇主担保）</p>
+<p><b>减法规则：</b>本方案以新加坡最终版执行策划案框架模版为母版，保留 EP 大类下的两条执行路径：EP就业准证（雇主担保）与 EP-PIC自雇投资公司。家办13O/13U、GIP A/B/C、Tech.Pass 等非EP大类内容已从执行路径、费用、时间轴和材料清单中剔除。</p>
+<h2>一、客户家庭基本信息</h2>
+<div class="table-wrap"><table><tr><th>项目</th><th>当前信息</th><th>状态</th></tr><tr><td>客户身份</td><td>中国籍企业主/高管/专业人士/家庭客户</td><td>⚠️ 待确认</td></tr><tr><td>本次选中项目</td><td>新加坡EP就业准证（雇主担保） + EP-PIC自雇投资公司 / EP-PIC自雇投资公司</td><td>✅ 已选中</td></tr><tr><td>核心目标</td><td>通过新加坡雇主offer或自雇PIC公司取得EP，后续规划PR/公民路径</td><td>✅ 本方案确认</td></tr><tr><td>随行成员</td><td>配偶及21岁以下未婚子女可评估DP家属准证</td><td>⚠️ 待确认</td></tr><tr><td>是否放弃中国国籍</td><td>EP/PR阶段不涉及放弃；公民阶段需另行决策</td><td>⚠️ 风险提示</td></tr><tr><td>税务身份</td><td>中国/新加坡/其他国家税务居民需独立判断</td><td>⚠️ 待确认</td></tr></table></div>
+<h3>待解决问题分级</h3><div class="table-wrap"><table><tr><th>编号</th><th>问题</th><th>严重度</th><th>说明</th></tr><tr><td>Q1</td><td>是否有真实新加坡雇主offer</td><td>P0</td><td>EP为雇主担保路径，必须有真实雇佣关系</td></tr><tr><td>Q2</td><td>薪资是否达到MOM门槛</td><td>P0</td><td>非金融≥S$5,600/月，金融≥S$6,200/月，并随年龄上升</td></tr><tr><td>Q3</td><td>COMPASS是否≥40分</td><td>P0</td><td>不达40分原则上无法通过EP评估</td></tr><tr><td>Q4</td><td>学历/工作经验/雇主资质材料是否完整</td><td>P1</td><td>影响审批速度和补件风险</td></tr><tr><td>Q5</td><td>后续PR可行性</td><td>P1</td><td>EP满一定居住和纳税记录后再评估PR</td></tr></table></div>
+<h2>二、核心策略</h2>
+<p><b>本次核心策略：</b>以新加坡真实雇主offer或真实经营的PIC自雇投资公司为基础，先取得EP就业准证，再通过稳定工作、纳税、居住、家庭融入和雇主贡献，积累PR申请条件。</p>
+<div class="table-wrap"><table><tr><th>维度</th><th>EP路径定位</th><th>判断</th></tr><tr><td>事业国</td><td>新加坡雇主所在业务体系</td><td>必须真实任职，不能虚构雇佣</td></tr><tr><td>居住国</td><td>新加坡阶段性居住+工作</td><td>EP续签和PR申请均看重实际联系</td></tr><tr><td>福利国</td><td>PR后逐步享受教育、医疗、CPF等福利</td><td>EP本身福利有限，PR为关键节点</td></tr><tr><td>管钱地</td><td>新加坡银行账户+薪资流水+家庭资产配置</td><td>需与税务身份和资金来源配合</td></tr></table></div>
+<h3>非EP项目剔除说明</h3><div class="table-wrap"><table><tr><th>项目</th><th>处理方式</th><th>理由</th></tr><tr><td>家族办公室13O/13U</td><td>删除执行内容，仅不作为本案路径</td><td>本次用户只选择EP项目</td></tr><tr><td>GIP A/B/C</td><td>删除执行内容</td><td>GIP为直接PR投资路径，非本案</td></tr><tr><td>EP-PIC自雇</td><td>完整保留</td><td>PIC属于EP大类，是通过自有新加坡投资公司申请EP的路径</td></tr><tr><td>Tech.Pass</td><td>删除执行内容</td><td>科技准证路径独立，非本案</td></tr></table></div>
+<h2>三、合规清理详细方案</h2>
+<div class="table-wrap"><table><tr><th>合规事项</th><th>EP要求</th><th>风险点</th><th>执行动作</th></tr><tr><td>雇佣真实性</td><td>真实岗位、真实薪资、真实雇主经营</td><td>挂靠、空壳雇主、虚假职位</td><td>审查雇主ACRA、岗位说明、雇佣合同、薪资支付安排</td></tr><tr><td>薪资合规</td><td>达到MOM薪资门槛，并符合年龄/行业标准</td><td>薪资低于门槛或不合理虚高</td><td>使用COMPASS和MOM薪资基准预评估</td></tr><tr><td>学历与经历</td><td>学历/工作履历真实可验证</td><td>学历造假、经历无法证明</td><td>准备学历认证、工作证明、推荐信、社保/税单</td></tr><tr><td>税务与资金</td><td>新加坡薪资纳税形成记录</td><td>多国税务居民冲突</td><td>税务师判断中国/新加坡/其他国家申报义务</td></tr><tr><td>家庭随行</td><td>满足DP/LTVP等家属准证要求</td><td>家庭关系证明不完整</td><td>准备出生、婚姻、亲属关系公证翻译</td></tr></table></div>
+<h2>四、境外资金归集与投资架构</h2>
+<p>EP路径本身不要求投资款，但涉及在新加坡居住、开户、薪资收取、家庭生活费用和后续资产配置。资金归集重点从“投资款”调整为“生活费、薪资账户、税务合规和家庭资产配置”。</p>
+<div class="table-wrap"><table><tr><th>资金类别</th><th>用途</th><th>建议路径</th><th>注意事项</th></tr><tr><td>薪资收入</td><td>EP持有人主要收入来源</td><td>新加坡雇主按月发薪至新加坡账户</td><td>形成稳定纳税和PR申请记录</td></tr><tr><td>家庭生活费</td><td>租房、教育、医疗、日常消费</td><td>境外已有资产/合规换汇/薪资</td><td>保留资金来源证明</td></tr><tr><td>国内家庭资产</td><td>暂不迁移或分阶段配置</td><td>继续在中国持有，必要时做税务规划</td><td>避免未评估税务后果即大额转移</td></tr><tr><td>新加坡银行账户</td><td>薪资、消费、投资账户</td><td>EP获批后开户</td><td>KYC需说明资金来源</td></tr></table></div>
+<h2>五、投资使用建议</h2>
+<p>EP项目不是投资移民项目，不以投资金额作为获批条件。本章从EP客户的资金使用角度提出建议：</p><ul><li>优先保障新加坡首年生活费、租房押金、子女教育预留金。</li><li>EP获批后建立新加坡薪资账户和纳税记录。</li><li>在PR申请前，保持稳定雇佣、真实居住和家庭融入记录。</li><li>如客户另有家办、基金、保险、信托等需求，应作为独立财税/财富策划案处理，不混入本EP执行案。</li></ul>
+
+<h3>5.2 EP-PIC自雇投资公司执行路径（保留）</h3>
+<p><b>PIC = Private Investment Company（私人投资公司）</b>，属于EP大类下的自雇路径。客户在新加坡注册私人投资公司，自己担任董事/投资经理，通过该公司管理自有资金并申请EP，核心逻辑是“自己的公司雇自己”。</p>
+<div class="table-wrap"><table><tr><th>维度</th><th>EP雇主担保</th><th>EP-PIC自雇投资公司</th></tr><tr><td>申请主体</td><td>新加坡雇主</td><td>客户自己的新加坡PIC公司</td></tr><tr><td>核心条件</td><td>真实offer、岗位、薪资、COMPASS≥40</td><td>真实公司、投资资金、办公室、商业计划、COMPASS≥40</td></tr><tr><td>资金门槛</td><td>无强制投资门槛</td><td>建议S$100-200万可投资资金</td></tr><tr><td>运营要求</td><td>受雇主经营和岗位约束</td><td>需维持真实投资管理活动、办公室、银行流水、会计税务</td></tr><tr><td>优势</td><td>成本低、周期快、路径清晰</td><td>自主性强，不依赖外部雇主</td></tr><tr><td>风险</td><td>与雇主绑定，离职影响EP</td><td>不能是空壳公司，MOM会审查真实性</td></tr></table></div>
+<h3>5.3 PIC申请流程</h3>
+<div class="table-wrap"><table><tr><th>步骤</th><th>动作</th><th>周期</th><th>输出</th></tr><tr><td>1</td><td>注册新加坡私人有限公司</td><td>1-3天</td><td>ACRA BizFile</td></tr><tr><td>2</td><td>开设公司银行账户</td><td>2-4周</td><td>公司账户</td></tr><tr><td>3</td><td>注入投资资金并形成资金来源说明</td><td>1-2周</td><td>银行流水/资金档案</td></tr><tr><td>4</td><td>租赁实体办公室或合规办公地址</td><td>1-2周</td><td>租约/地址证明</td></tr><tr><td>5</td><td>撰写商业计划书和投资策略</td><td>1-2周</td><td>英文商业计划书</td></tr><tr><td>6</td><td>按COMPASS评估薪资、学历、技能、雇主维度</td><td>同步</td><td>COMPASS自评表</td></tr><tr><td>7</td><td>递交EP申请</td><td>4-8周</td><td>MOM回执/批准信</td></tr><tr><td>8</td><td>获批后持续运营</td><td>持续</td><td>会计税务、投资记录、续签材料</td></tr></table></div>
+<h3>5.4 PIC适合客户</h3>
+<ul><li>有S$100-200万以上可投资资金。</li><li>希望通过自有新加坡公司取得EP，不完全依赖第三方雇主。</li><li>有投资管理、企业经营或资产配置经验。</li><li>愿意承担公司秘书、会计税务、办公室和真实运营成本。</li><li>不适合只想买身份、不愿真实运营的客户。</li></ul>
+
+<h2>六、财富架构搭建方案</h2>
+<p>EP阶段建议采用轻架构：个人EP身份 + 新加坡薪资账户 + 家庭生活账户 + 中国资产保留 + 后续财税策划。暂不引入家办/GIP/PIC等复杂投资结构。</p><pre>中国家庭资产 / 中国事业主体
+  ↓（暂保留，先做税务体检）
+新加坡雇主真实聘用
+  ↓
+EP就业准证 + 新加坡薪资账户
+  ↓
+稳定工作/纳税/居住记录
+  ↓
+PR申请评估
+  ↓
+后续教育、福利、财税与财富传承规划</pre>
+<h2>七、税务分析</h2>
+<div class="table-wrap"><table><tr><th>事项</th><th>EP路径判断</th><th>执行建议</th></tr><tr><td>新加坡薪资税</td><td>EP持有人在新加坡取得薪资，通常需在新加坡申报纳税</td><td>保留IRAS申报、税单、薪资单</td></tr><tr><td>中国税务居民</td><td>若仍为中国税务居民，可能需评估全球所得申报义务</td><td>由中国税务师单独判断</td></tr><tr><td>183天规则</td><td>新加坡税务居民身份取决于居住和工作安排</td><td>建立年度居住天数表</td></tr><tr><td>CRS/KYC</td><td>新加坡银行开户会询问税务居民身份</td><td>如实申报，不建议隐瞒</td></tr></table></div>
+<h2>八、资金跨境合规方案</h2>
+<ol><li>确认新加坡首年生活费预算。</li><li>确认资金来源：薪资、境外存量、家庭合规换汇、国内分红等。</li><li>开立新加坡个人银行账户。</li><li>建立资金来源说明和银行流水档案。</li><li>如涉及大额资产配置，另行启动财税定制化策划。</li></ol>
+<h2>九、身份路径规划</h2>
+<div id="compassSync" class="card" style="background:#f0fdf4;border:1.5px solid #059669"><h2 style="color:#059669;border-left-color:#059669">📊 COMPASS 同步评估结果</h2><p id="compassText">请先在顶部计算器选择条件，结果将自动同步到此处。</p></div>
+<div class="table-wrap"><table><tr><th>阶段</th><th>身份</th><th>周期</th><th>关键条件</th><th>输出</th></tr><tr><td>第1阶段</td><td>EP就业准证</td><td>4-8周审批</td><td>真实雇主offer、薪资达标、COMPASS≥40</td><td>EP批准信/准证卡</td></tr><tr><td>第2阶段</td><td>DP家属准证</td><td>与EP同步或后续</td><td>薪资和家庭关系满足要求</td><td>配偶/子女家属准证</td></tr><tr><td>第3阶段</td><td>PR永久居民</td><td>EP后择机申请</td><td>稳定雇佣、纳税、居住、家庭融入</td><td>PR批准/REP</td></tr><tr><td>第4阶段</td><td>公民（可选）</td><td>PR满2年后评估</td><td>接受放弃原国籍</td><td>新加坡公民身份</td></tr></table></div>
+<h2>十、教育规划</h2><p>EP持有人子女可根据学校类型申请就读国际学校、私立学校或部分政府学校路径。PR前教育福利有限，PR后教育成本和优先级会改善。</p><div class="table-wrap"><table><tr><th>类型</th><th>EP阶段</th><th>PR阶段</th><th>建议</th></tr><tr><td>国际学校</td><td>可申请，费用高</td><td>仍可申请</td><td>适合过渡和国际课程</td></tr><tr><td>政府学校</td><td>名额和录取限制更多</td><td>优先级提升</td><td>需提前规划AEIS/入学考试</td></tr><tr><td>高等教育</td><td>国际学生口径</td><td>PR口径更有优势</td><td>结合长期身份安排</td></tr></table></div>
+<h2>十一、福利居住国规划</h2><div class="table-wrap"><table><tr><th>维度</th><th>EP阶段</th><th>PR阶段</th></tr><tr><td>医疗</td><td>主要依靠商业保险/雇主保险</td><td>可逐步进入本地福利体系</td></tr><tr><td>教育</td><td>国际学生/外籍家庭口径</td><td>费用和录取优先级改善</td></tr><tr><td>CPF</td><td>一般不适用</td><td>PR开始适用</td></tr><tr><td>居住稳定性</td><td>受雇主和准证续签影响</td><td>稳定性显著提升</td></tr></table></div>
+<h2>十二、预算明细汇总</h2><div id="compassBudgetSync" class="card" style="background:#f0fdf4;border:1.5px solid #059669"><p><b>COMPASS同步：</b><span id="compassBudgetText">待计算。</span></p></div>
+<h3>12.1 EP就业准证费用明细</h3><div class="table-wrap"><table><tr><th>费用项目</th><th>收费机构</th><th>参考金额</th><th>付款节点</th></tr><tr><td>EP申请费</td><td>MOM</td><td>S$105-225</td><td>提交申请时</td></tr><tr><td>EP签发费</td><td>MOM</td><td>S$225</td><td>获批后</td></tr><tr><td>多次入境签证</td><td>ICA/MOM</td><td>S$30（如需）</td><td>获批后</td></tr><tr><td>DP家属准证</td><td>MOM</td><td>S$105-225/人</td><td>随行申请</td></tr><tr><td>学历/出生/婚姻公证翻译</td><td>公证处/翻译公司</td><td>按实际</td><td>材料阶段</td></tr><tr><td>体检</td><td>指定医院</td><td>S$50-150</td><td>获批后</td></tr><tr><td>顾问服务费</td><td>顾问公司</td><td>¥15万固定</td><td>签约后</td></tr></table></div>
+<h3>12.2 EP材料清单</h3><div class="table-wrap"><table><tr><th>文件</th><th>主申</th><th>配偶</th><th>子女</th><th>要求</th></tr><tr><td>护照</td><td>✅</td><td>✅</td><td>✅</td><td>有效期6个月以上</td></tr><tr><td>照片</td><td>✅</td><td>✅</td><td>✅</td><td>白底近照</td></tr><tr><td>学历证书+成绩单</td><td>✅</td><td>—</td><td>—</td><td>英文或翻译</td></tr><tr><td>新加坡雇主聘书/合同</td><td>✅</td><td>—</td><td>—</td><td>含职位和月薪</td></tr><tr><td>雇主ACRA注册信息</td><td>✅</td><td>—</td><td>—</td><td>雇主提供</td></tr><tr><td>工作经历证明</td><td>✅</td><td>—</td><td>—</td><td>推荐信/社保/税单</td></tr><tr><td>出生证明公证</td><td>✅</td><td>✅</td><td>✅</td><td>中英文</td></tr><tr><td>结婚证公证</td><td>—</td><td>✅</td><td>—</td><td>如适用</td></tr><tr><td>COMPASS自评表</td><td>✅</td><td>—</td><td>—</td><td>≥40分</td></tr></table></div>
+
+<h3>12.3 EP-PIC自雇投资公司费用明细</h3>
+<div class="table-wrap"><table><tr><th>费用项目</th><th>参考金额</th><th>说明</th></tr><tr><td>新加坡公司注册</td><td>S$315起</td><td>ACRA官方及秘书公司服务另计</td></tr><tr><td>公司秘书/注册地址</td><td>S$800-1,800/年</td><td>按服务商报价</td></tr><tr><td>银行开户</td><td>S$0-500</td><td>视银行而定</td></tr><tr><td>办公室/合规办公</td><td>S$1,500-3,000/月</td><td>按实际租赁</td></tr><tr><td>会计/审计/报税</td><td>S$3,000-8,000/年</td><td>按公司交易复杂度</td></tr><tr><td>商业计划书</td><td>按服务范围</td><td>用于证明真实经营</td></tr><tr><td>EP申请官方费用</td><td>S$105-225 + 签发费S$225</td><td>MOM官方费用</td></tr><tr><td>顾问服务费</td><td>¥15万固定</td><td>按EP/PIC服务口径</td></tr></table></div>
+<h3>12.4 EP-PIC材料清单</h3>
+<div class="table-wrap"><table><tr><th>材料</th><th>用途</th><th>备注</th></tr><tr><td>主申请人护照、照片、学历、工作证明</td><td>个人资格</td><td>与EP通用</td></tr><tr><td>新加坡公司注册文件</td><td>申请主体证明</td><td>ACRA BizFile</td></tr><tr><td>公司银行账户/资金注入凭证</td><td>资金和运营真实性</td><td>需资金来源说明</td></tr><tr><td>办公室租约/地址证明</td><td>实体运营证明</td><td>避免空壳风险</td></tr><tr><td>商业计划书/投资策略</td><td>解释公司业务</td><td>英文版</td></tr><tr><td>会计税务维护文件</td><td>续签和PR准备</td><td>持续留存</td></tr></table></div>
+
+<h2>十三、执行时间轴</h2><div class="table-wrap"><table><tr><th>时间</th><th>动作</th><th>责任方</th><th>交付物</th></tr><tr><td>第1周</td><td>确认雇主offer/或PIC公司路径、岗位、薪资、COMPASS预评估</td><td>客户+顾问+雇主</td><td>预评估表</td></tr><tr><td>第1-2周</td><td>准备护照、学历、工作证明、家庭公证材料</td><td>客户</td><td>材料包</td></tr><tr><td>第2周</td><td>雇主或PIC公司准备ACRA、职位说明、聘用/任职文件</td><td>雇主</td><td>雇主材料</td></tr><tr><td>第3周</td><td>递交EP申请</td><td>顾问/雇主</td><td>MOM回执</td></tr><tr><td>第4-8周</td><td>审批/补件</td><td>MOM+雇主+客户</td><td>补件或批准信</td></tr><tr><td>获批后1-2周</td><td>入境、录指纹、领EP卡</td><td>客户</td><td>EP准证卡</td></tr><tr><td>EP获批后持续运营</td><td>PIC路径需维持真实办公、投资活动、会计税务和本地经济联系</td><td>客户+秘书公司+会计师</td><td>运营记录、银行流水、财报税表</td></tr><tr><td>6-12个月后</td><td>评估PR申请可行性</td><td>客户+顾问</td><td>PR评估报告</td></tr></table></div>
+<h2>十四、财税执行策划案全文</h2><p>本章为财税执行策划案框架保留章，EP/EP-PIC路径客户在身份方案之外，应单独完成税务居民身份、跨境收入、薪资纳税、CRS/KYC、境内外资产配置和家庭传承风险的财税评估。</p><h3>14.1 财税信息收集清单</h3><ul><li>近3年中国及境外居住天数表。</li><li>近3年个人所得税申报记录、完税证明。</li><li>新加坡雇佣合同、薪资结构、奖金安排。</li><li>中国企业股权结构、分红记录、审计报告。</li><li>境内外银行账户、证券账户、保险、信托、房产清单。</li><li>家庭成员税务居民身份和CRS申报情况。</li></ul><h3>14.2 财税执行方向</h3><div class="table-wrap"><table><tr><th>模块</th><th>执行内容</th><th>输出</th></tr><tr><td>税务居民判断</td><td>中国/新加坡/其他国家税务居民身份确认</td><td>税务居民判断表</td></tr><tr><td>薪资税务规划</td><td>新加坡薪资、奖金、福利的申报与税负测算</td><td>薪资税务测算表</td></tr><tr><td>中国侧税务</td><td>个人所得税、股东分红、企业利润分配</td><td>中国税务风险清单</td></tr><tr><td>CRS/KYC</td><td>银行开户和税务居民申报一致性</td><td>CRS/KYC口径表</td></tr><tr><td>资产配置</td><td>保险、证券、现金、房产、信托安排</td><td>资产配置执行建议</td></tr></table></div><div class="card note"><h2>财税定制化执行策划案收费说明</h2><p><strong>财税定制化执行策划案收齐上述材料后另行出具根据难易程度单独收费。</strong></p></div>
+<h2>十五、重要风险声明与附件</h2><ul><li><span class="red">EP不是永居，也不是公民。</span> EP为工作准证，受雇主、薪资、岗位和续签政策影响。</li><li><span class="red">COMPASS政策可能调整。</span> 薪资门槛、职业清单和雇主维度需以MOM最新规则为准。</li><li><span class="red">PR申请无保证。</span> EP持有记录、纳税、居住、家庭融入和经济贡献只是申请基础，不构成获批承诺。</li><li><span class="red">新加坡不承认双重国籍。</span> 公民阶段必须处理原国籍放弃问题。</li><li><span class="red">本方案不构成法律、税务、投资或移民建议。</span> 落地前需由新加坡持牌律师、税务师、雇主和MOM规则共同确认。</li></ul><h3>附件：法规/项目资料复核清单</h3><div class="table-wrap"><table><tr><th>来源</th><th>用途</th><th>交付前复核</th></tr><tr><td>MOM Employment Pass Criteria</td><td>EP薪资和申请条件</td><td>必须官网复核</td></tr><tr><td>MOM COMPASS Framework</td><td>COMPASS评分</td><td>必须官网复核</td></tr><tr><td>ICA PR / Citizenship</td><td>PR和公民路径</td><td>必须官网复核</td></tr><tr><td>IRAS Individual Income Tax</td><td>新加坡个人所得税</td><td>必须官网复核</td></tr></table></div>
+</div>
+<div class="card"><h2>佣金明细查看</h2><p class="muted">内部信息。请输入授权密码后查看佣金金额、结佣周期、批次和对接人信息。</p><div style="display:flex;gap:8px"><input id="pwd" type="password" placeholder="请输入密码" style="flex:1;border:1.5px solid #ddd;border-radius:10px;padding:12px"><button class="btn primary" onclick="checkPwd()">确认</button></div></div><div class="card" id="commission" style="display:none"><h2>佣金明细（EP项目，含PIC）</h2><div class="grid"><div class="item"><b>¥8万</b><span>佣金金额（服务费¥15万 - 底价¥7万）</span></div><div class="item"><b>3个月</b><span>结佣周期</span></div><div class="item"><b>根据实际情况</b><span>结佣批次</span></div><div class="item"><b>张三 / 12345678911</b><span>结佣对接人</span></div></div></div>
+</div><script>
+function calcCompass(){var t=0,els=['selC1','selC2','selC3','selC4','selC5','selC6'];for(var i=0;i<els.length;i++)t+=parseInt(document.getElementById(els[i]).value)||0;var c=document.getElementById('scoreCircle'),v=document.getElementById('scoreVerdict');c.textContent=t;if(t>=40){c.style.background='#059669';v.innerHTML='✅ <span style="color:#059669;font-weight:700">通过 COMPASS</span> — 可递交EP申请'}else{c.style.background='#dc2626';v.innerHTML='❌ <span style="color:#dc2626;font-weight:700">未通过</span> — 差'+(40-t)+'分，建议优化条件'}var txt='COMPASS总分：'+t+'分；'+(t>=40?'已达到EP申请基础门槛。':'尚未达到40分，需优化薪资、学历、雇主结构或技能加分。');document.getElementById('compassText').textContent=txt;document.getElementById('compassBudgetText').textContent=txt}
+function checkPwd(){if(document.getElementById('pwd').value==='888888'){document.getElementById('commission').style.display='block';document.getElementById('commission').scrollIntoView({behavior:'smooth'})}else alert('密码错误，请重试')}
+document.addEventListener('DOMContentLoaded',calcCompass)
+</script>
+<script id="sg-ep-compass-sync-fix">
+(function(){
+  function safeText(id){var el=document.getElementById(id); if(!el) return {score:0,label:'未找到'}; var opt=el.options[el.selectedIndex]; return {score:parseInt(el.value,10)||0,label:opt?opt.textContent:''};}
+  window.sgEpCalcSync = function(){
+    var ids=['selC1','selC2','selC3','selC4','selC5','selC6'];
+    var names=['C1 薪资','C2 学历','C3 员工多样性','C4 本地就业支持','C5 技能加分','C6 战略经济优先'];
+    var total=0, rows='';
+    for(var i=0;i<ids.length;i++){
+      var r=safeText(ids[i]); total+=r.score;
+      rows += '<tr><td>'+names[i]+'</td><td>'+r.score+'分</td><td>'+r.label.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</td></tr>';
+    }
+    var pass = total >= 40;
+    var c=document.getElementById('scoreCircle');
+    var v=document.getElementById('scoreVerdict');
+    if(c){ c.textContent=total; c.style.background = pass ? '#059669' : '#dc2626'; }
+    if(v){ v.innerHTML = pass ? '✅ <span style="color:#059669;font-weight:700">通过 COMPASS</span> — 可递交EP申请' : '❌ <span style="color:#dc2626;font-weight:700">未通过</span> — 差'+(40-total)+'分，建议优化条件'; }
+    var summary = 'COMPASS总分：'+total+'分；'+(pass?'已达到EP申请基础门槛，可进入EP/EP-PIC材料准备和递交评估。':'尚未达到40分，需优化薪资、学历、雇主结构、本地就业或技能加分。');
+    var table = '<p><b>'+summary+'</b></p><div class="table-wrap"><table><tr><th>维度</th><th>得分</th><th>当前选择</th></tr>'+rows+'<tr><td><b>总分</b></td><td><b>'+total+'分</b></td><td>'+(pass?'✅ 通过':'❌ 未通过')+'</td></tr></table></div>';
+    var t1=document.getElementById('compassText'); if(t1) t1.innerHTML=table;
+    var t2=document.getElementById('compassBudgetText'); if(t2) t2.innerHTML=summary;
+    return total;
+  };
+  window.calcCompass = window.sgEpCalcSync;
+  function bind(){
+    ['selC1','selC2','selC3','selC4','selC5','selC6'].forEach(function(id){
+      var el=document.getElementById(id); if(el){ el.addEventListener('change', window.sgEpCalcSync); el.addEventListener('input', window.sgEpCalcSync); }
+    });
+    window.sgEpCalcSync();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', bind); else bind();
+})();
+</script>
+</body></html>
